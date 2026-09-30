@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+:root {
+  --void: #06060c;
+  --violet: #7c5cfc;
+  --cyan: #35e6d0;
+  --surface: rgba(255, 255, 255, 0.045);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --border-soft: rgba(255, 255, 255, 0.09);
+  --border-glow: rgba(124, 92, 252, 0.55);
+  --text-muted: #8d8ba0;
+}
+
+html, body {
+  background-color: var(--void);
+}
+
+h1, h2, h3, .font-display {
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.ai-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--void);
+}
+
+.ai-field::before,
+.ai-field::after {
+  content: "";
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  max-width: 720px;
+  max-height: 720px;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.35;
+  will-change: transform;
+}
+
+.ai-field::before {
+  top: -10%;
+  left: -10%;
+  background: var(--violet);
+  animation: drift-a 22s ease-in-out infinite alternate;
+}
+
+.ai-field::after {
+  bottom: -15%;
+  right: -10%;
+  background: var(--cyan);
+  animation: drift-b 26s ease-in-out infinite alternate;
+}
+
+@keyframes drift-a {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(6vw, 8vh) scale(1.15); }
+}
+
+@keyframes drift-b {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-8vw, -6vh) scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-field::before,
+  .ai-field::after {
+    animation: none;
+  }
+}
+
+.glass-panel {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--border-glow);
+  box-shadow: 0 0 24px -6px var(--border-glow);
+}
+
+.btn-glow {
+  background: var(--violet);
+  color: #ffffff;
+  box-shadow: 0 0 0px 0px rgba(124, 92, 252, 0);
+  transition: box-shadow 0.25s ease, transform 0.15s ease, background-color 0.25s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 30px -4px var(--border-glow);
+}
+
+.btn-glow:active {
+  transform: scale(0.98);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--violet), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
