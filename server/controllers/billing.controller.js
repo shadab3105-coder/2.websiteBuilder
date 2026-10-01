@@ -1,6 +1,8 @@
 import { PLANS } from "../config/plan.js"
 import stripe from "../config/stripe.js"
 
+
+
 export const billing=async (req,res)=>{
 try {
     const {planType}=req.body
@@ -9,6 +11,8 @@ try {
     if(!plan || plan.price==0){
         return res.status(400).json({message:"invalid paid plan"})
     }
+
+    console.log("BILLING HIT", req.body)
    const session=await stripe.checkout.sessions.create({
     mode:"payment",
     payment_method_types:["card"],
