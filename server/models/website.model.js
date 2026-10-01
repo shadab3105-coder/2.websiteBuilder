@@ -42,8 +42,8 @@ const websiteSchema=new mongoose.Schema({
         type:String,
         unique:true,
         sparse: true,
-    }
-
+    },
+    isDefault: { type: Boolean, default: false }
 },{timestamps:true})
 
 const Website=mongoose.model("Website",websiteSchema)

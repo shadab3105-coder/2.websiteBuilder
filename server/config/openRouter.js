@@ -26,7 +26,7 @@ const callOpenRouter = async (prompt, maxTokens) => {
 }
 
 export const generateResponse = async (prompt) => {
-    const DESIRED_MAX_TOKENS = 6000
+    const DESIRED_MAX_TOKENS = 4000
     const SAFETY_BUFFER = 200
 
     let res = await callOpenRouter(prompt, DESIRED_MAX_TOKENS)
